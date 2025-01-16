@@ -1,18 +1,5 @@
 #include QMK_KEYBOARD_H
 
-enum layer {
-    _U_BASE = 0,
-    _U_NAV,
-    _U_SYM,
-    _U_NUM,
-    _U_FUN,
-};
-
-enum tap_dance {
-    TD_C_ESC,
-    TD_COMMA_ESC,
-};
-
 #define NOOP       KC_NO
 #define MOD_A      LGUI_T(KC_A)
 #define MOD_QUOT   LGUI_T(KC_QUOT)
@@ -34,17 +21,41 @@ enum tap_dance {
 #define U_SYM_SPC  LT(_U_SYM, KC_SPC)
 #define U_NUM_BSPC LT(_U_NUM, KC_BSPC)
 
+enum combos {
+  IO_ESC,
+  WE_TAB,
+};
+
+const uint16_t PROGMEM io_combo[] = {KC_I, KC_O, COMBO_END};
+const uint16_t PROGMEM we_combo[] = {KC_W, KC_E, COMBO_END};
+
+combo_t key_combos[] = {
+  [IO_ESC] = COMBO(io_combo, KC_ESC),
+  [WE_TAB] = COMBO(we_combo, KC_TAB),
+};
+
+enum tap_dance {
+    TD_BSLS_ESC,
+};
+
 tap_dance_action_t tap_dance_actions[] = {
-   [TD_C_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_C, KC_ESC),
-   [TD_COMMA_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_COMM, KC_ESC),
+   [TD_BSLS_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_BSLS, KC_ESC),
+};
+
+enum layer {
+    _U_BASE = 0,
+    _U_NAV,
+    _U_SYM,
+    _U_NUM,
+    _U_FUN,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_U_BASE] = LAYOUT_split_3x6_3(
-    NOOP, KC_Q,      KC_W,      KC_E,         KC_R,       KC_T, KC_Y,    KC_U,  KC_I,             KC_O,     KC_P,     NOOP,
-    NOOP, MOD_A,     ALT_S,     CTL_D,        SFT_F,      KC_G, KC_H,    SFT_J, CTL_K,            ALT_L,    MOD_QUOT, NOOP,
-    NOOP, KC_Z,      ALGR_X,    TD(TD_C_ESC), KC_V,       KC_B, U_FUN_N, KC_M,  TD(TD_COMMA_ESC), ALGR_DOT, KC_SLSH,  NOOP,
-    NOOP, U_NAV_TAB, U_NAV_ENT, U_SYM_SPC,    U_NUM_BSPC, NOOP
+    NOOP, KC_Q,      KC_W,      KC_E,      KC_R,       KC_T, KC_Y,    KC_U,  KC_I,    KC_O,     KC_P,     NOOP,
+    NOOP, MOD_A,     ALT_S,     CTL_D,     SFT_F,      KC_G, KC_H,    SFT_J, CTL_K,   ALT_L,    MOD_QUOT, NOOP,
+    NOOP, KC_Z,      ALGR_X,    KC_C,      KC_V,       KC_B, U_FUN_N, KC_M,  KC_COMM, ALGR_DOT, KC_SLSH,  NOOP,
+    NOOP, U_NAV_TAB, U_NAV_ENT, U_SYM_SPC, U_NUM_BSPC, NOOP
   ),
 
   [_U_NAV] = LAYOUT_split_3x6_3(
@@ -62,9 +73,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_U_NUM] = LAYOUT_split_3x6_3(
-    NOOP, KC_LBRC, KC_7,    KC_8, KC_9, KC_RBRC, NOOP, NOOP,    NOOP,    NOOP,    NOOP,    NOOP,
-    NOOP, KC_SCLN, KC_4,    KC_5, KC_6, KC_EQL,  NOOP, KC_RSFT, KC_RCTL, KC_LALT, KC_LGUI, NOOP,
-    NOOP, KC_GRV,  KC_1,    KC_2, KC_3, KC_BSLS, NOOP, NOOP,    NOOP,    NOOP,    NOOP,    NOOP,
+    NOOP, KC_LBRC, KC_7,    KC_8, KC_9, KC_RBRC,         NOOP, NOOP,    NOOP,    NOOP,    NOOP,    NOOP,
+    NOOP, KC_SCLN, KC_4,    KC_5, KC_6, KC_EQL,          NOOP, KC_RSFT, KC_RCTL, KC_LALT, KC_LGUI, NOOP,
+    NOOP, KC_GRV,  KC_1,    KC_2, KC_3, TD(TD_BSLS_ESC), NOOP, NOOP,    NOOP,    NOOP,    NOOP,    NOOP,
     NOOP, KC_0,    KC_MINS, NOOP, NOOP, NOOP
   ),
 
