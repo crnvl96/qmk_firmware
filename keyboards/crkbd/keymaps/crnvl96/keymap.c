@@ -13,8 +13,7 @@
 #define ALGR_X     ALGR_T(KC_X)
 #define ALGR_DOT   ALGR_T(KC_DOT)
 
-#define U_NAV_TAB  LT(_U_NAV, KC_TAB)
-#define U_NAV_ENT  LT(_U_NAV, KC_ENT)
+#define U_NAV_ESC  LT(_U_NAV, KC_ESC)
 #define U_SYM_SPC  LT(_U_SYM, KC_SPC)
 #define U_NUM_BSPC LT(_U_NUM, KC_BSPC)
 #define U_FUN_SLSH LT(_U_FUN, KC_SLSH)
@@ -28,24 +27,16 @@ enum layer {
 };
 
 enum combos {
-    IO_ESC,
-    WE_CAPS,
+    IO,
+    WE,
 };
 
 const uint16_t PROGMEM io_combo[] = {KC_I, KC_O, COMBO_END};
 const uint16_t PROGMEM we_combo[] = {KC_W, KC_E, COMBO_END};
 
 combo_t key_combos[] = {
-    [IO_ESC] = COMBO(io_combo, KC_ESC),
-    [WE_CAPS] = COMBO(we_combo, KC_CAPS),
-};
-
-enum tap_dance {
-    TD_BSLS_ESC,
-};
-
-tap_dance_action_t tap_dance_actions[] = {
-    [TD_BSLS_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_BSLS, KC_ESC),
+    [IO] = COMBO(io_combo, KC_DEL),
+    [WE] = COMBO(we_combo, KC_CAPS),
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -57,41 +48,41 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         NOOP,    KC_Z,   ALGR_X,   KC_C,    KC_V,    KC_B,                         KC_N,    KC_M,    KC_COMM, ALGR_DOT,U_FUN_SLSH,NOOP,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                    NOOP,   U_NAV_TAB,U_NAV_ENT,     U_SYM_SPC, U_NUM_BSPC,NOOP
+                                    NOOP,   U_NAV_ESC, KC_ENT,          U_SYM_SPC, U_NUM_BSPC, NOOP
                                 //`--------------------------'  `--------------------------'
     ),
 
     [_U_NAV] = LAYOUT_split_3x6_3(
     //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-        NOOP,    NOOP,    NOOP,    NOOP,    NOOP,    NOOP,                         NOOP,    KC_CAPS, KC_ESC,   KC_DEL,    NOOP,    NOOP,
+        NOOP,    NOOP,    NOOP,    NOOP,    NOOP,    NOOP,                         NOOP,    NOOP,   NOOP,   NOOP,    NOOP,    NOOP,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         NOOP,    KC_LGUI, KC_LALT, KC_RCTL, KC_LSFT, NOOP,                         KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, NOOP,    NOOP,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         NOOP,    NOOP,    NOOP,    NOOP,    NOOP,    NOOP,                         KC_HOME, KC_PGDN, KC_PGUP, KC_END,  NOOP,    NOOP,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                    NOOP,    NOOP,    NOOP,             KC_ESC,   KC_DEL,  NOOP
+                                    NOOP,    NOOP,    NOOP,              NOOP,   NOOP,  NOOP
                                 //`--------------------------'  `--------------------------'
     ),
 
     [_U_SYM] = LAYOUT_split_3x6_3(
     //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-        NOOP,    KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR,                      NOOP,    KC_RPRN, KC_UNDS,    NOOP,    NOOP,    NOOP,
+        NOOP,    KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR,                      NOOP,    KC_RPRN,  NOOP,    KC_TAB,  NOOP,    NOOP,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         NOOP,    KC_COLN, KC_DLR,  KC_PERC, KC_CIRC, KC_PLUS,                      NOOP,    KC_RSFT, KC_RCTL, KC_LALT, KC_LGUI, NOOP,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         NOOP,    KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_PIPE,                      NOOP,    NOOP,    NOOP,    NOOP,    NOOP,    NOOP,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                    NOOP,    KC_RPRN, KC_UNDS,           NOOP,     NOOP,    NOOP
+                                    NOOP,    NOOP,  KC_UNDS,             NOOP,     NOOP,    NOOP
                                 //`--------------------------'  `--------------------------'
     ),
 
     [_U_NUM] = LAYOUT_split_3x6_3(
     //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-        NOOP,    KC_LBRC, KC_7,    KC_8,    KC_9,    KC_RBRC,                      NOOP,   KC_0,    KC_MINS,    NOOP,    NOOP,  NOOP,
+        NOOP,    KC_LBRC, KC_7,    KC_8,    KC_9,    KC_RBRC,                      NOOP,   NOOP,    NOOP,    KC_TAB,    NOOP,  NOOP,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         NOOP,    KC_SCLN, KC_4,    KC_5,    KC_6,    KC_EQL,                       NOOP,    KC_RSFT, KC_RCTL, KC_LALT, KC_LGUI, NOOP,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-        NOOP,    KC_GRV,  KC_1,    KC_2,    KC_3,    TD(TD_BSLS_ESC),               NOOP,    NOOP,    NOOP,    NOOP,    NOOP,    NOOP,
+        NOOP,    KC_GRV,  KC_1,    KC_2,    KC_3,    KC_BSLS,                      NOOP,    NOOP,    NOOP,    NOOP,    NOOP,    NOOP,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                     NOOP,    KC_0,    KC_MINS,           NOOP,     NOOP,    NOOP
                                 //`--------------------------'  `--------------------------'
@@ -99,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_U_FUN] = LAYOUT_split_3x6_3(
     //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-        NOOP,    KC_F12,  KC_F7,   KC_F8,   KC_F9,   KC_PSCR,                      NOOP,    NOOP,    NOOP,    NOOP,    NOOP,    NOOP,
+        NOOP,    KC_F12,  KC_F7,   KC_F8,   KC_F9,   NOOP,                         NOOP,    NOOP,    NOOP,    NOOP,    NOOP,    NOOP,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         NOOP,    KC_F11,  KC_F4,   KC_F5,   KC_F6,   NOOP,                         NOOP,    KC_RSFT, KC_RCTL, KC_LALT, KC_LGUI, NOOP,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
