@@ -66,13 +66,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_U_SYM] = LAYOUT_split_3x6_3(
     //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-        NOOP,    KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR,                      NOOP,    KC_RPRN,  NOOP,    KC_TAB,  NOOP,    NOOP,
+        NOOP,    KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR,                      NOOP,    NOOP,   NOOP,    KC_TAB,  NOOP,    NOOP,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         NOOP,    KC_COLN, KC_DLR,  KC_PERC, KC_CIRC, KC_PLUS,                      NOOP,    KC_RSFT, KC_RCTL, KC_LALT, KC_LGUI, NOOP,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         NOOP,    KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_PIPE,                      NOOP,    NOOP,    NOOP,    NOOP,    NOOP,    NOOP,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                    NOOP,    NOOP,  KC_UNDS,             NOOP,     NOOP,    NOOP
+                                    NOOP,   KC_RPRN,  KC_UNDS,             NOOP,     NOOP,    NOOP
                                 //`--------------------------'  `--------------------------'
     ),
 
