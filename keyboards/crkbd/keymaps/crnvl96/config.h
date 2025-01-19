@@ -1,13 +1,15 @@
 #pragma once
 
 #define MASTER_LEFT
-// #define MASTER_RIGHT
-// #define EE_HANDS
 
 // defines what is a tap and what is a hold
 #undef TAPPING_TERM
 #define TAPPING_TERM 165
+
 #define TAPPING_TERM_PER_KEY
+
+// combos must be pressed under this time interval
+#define COMBO_TERM 20
 
 // disables hold auto-repeat.
 #undef QUICK_TAP_TERM
