@@ -4,12 +4,12 @@
 
 // defines what is a tap and what is a hold
 #undef TAPPING_TERM
-#define TAPPING_TERM 165
+#define TAPPING_TERM 160
 
 #define TAPPING_TERM_PER_KEY
 
 // combos must be pressed under this time interval
-#define COMBO_TERM 20
+#define COMBO_TERM 30
 
 // disables hold auto-repeat.
 #undef QUICK_TAP_TERM
