@@ -13,10 +13,10 @@
 #define ALGR_X     ALGR_T(KC_X)
 #define ALGR_DOT   ALGR_T(KC_DOT)
 
-#define U_NAV_ESC  LT(_U_NAV, KC_ESC)
 #define U_SYM_SPC  LT(_U_SYM, KC_SPC)
 #define U_NUM_BSPC LT(_U_NUM, KC_BSPC)
-#define U_FUN_SLSH LT(_U_FUN, KC_SLSH)
+#define U_NAV_ESC  LT(_U_NAV, KC_ESC)
+#define U_FUN_ENT  LT(_U_FUN, KC_ENT)
 
 enum layer {
     _U_BASE = 0,
@@ -26,29 +26,16 @@ enum layer {
     _U_FUN,
 };
 
-enum combos {
-    IO,
-    WE,
-};
-
-const uint16_t PROGMEM io_combo[] = {KC_I, KC_O, COMBO_END};
-const uint16_t PROGMEM we_combo[] = {KC_W, KC_E, COMBO_END};
-
-combo_t key_combos[] = {
-    [IO] = COMBO(io_combo, KC_DEL),
-    [WE] = COMBO(we_combo, KC_CAPS),
-};
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_U_BASE] = LAYOUT_split_3x6_3(
     //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-        NOOP,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    NOOP,
+        NOOP,    KC_Q,    KC_W,    KC_E,   KC_R,    KC_T,                          KC_Y,    KC_U,   KC_I,    KC_O,    KC_P,    NOOP,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         NOOP,    MOD_A,   ALT_S,   CTL_D,   SFT_F,   KC_G,                         KC_H,    SFT_J,   CTL_K,   ALT_L,   MOD_QUOT,NOOP,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-        NOOP,    KC_Z,   ALGR_X,   KC_C,    KC_V,    KC_B,                         KC_N,    KC_M,    KC_COMM, ALGR_DOT,U_FUN_SLSH,NOOP,
+        NOOP,    KC_Z,   ALGR_X,   KC_C,   KC_V,    KC_B,                          KC_N,   KC_M,     KC_COMM, ALGR_DOT,KC_SLSH,NOOP,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                    NOOP,   U_NAV_ESC, KC_ENT,          U_SYM_SPC, U_NUM_BSPC, NOOP
+                                  NOOP,    U_NAV_ESC, U_FUN_ENT,                  U_SYM_SPC, U_NUM_BSPC, NOOP
                                 //`--------------------------'  `--------------------------'
     ),
 
@@ -66,13 +53,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_U_SYM] = LAYOUT_split_3x6_3(
     //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-        NOOP,    KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR,                      NOOP,    NOOP,   NOOP,    KC_TAB,  NOOP,    NOOP,
+        NOOP,    KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR,                      NOOP,    NOOP,   NOOP,    NOOP,    NOOP,    NOOP,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         NOOP,    KC_COLN, KC_DLR,  KC_PERC, KC_CIRC, KC_PLUS,                      NOOP,    KC_RSFT, KC_RCTL, KC_LALT, KC_LGUI, NOOP,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         NOOP,    KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_PIPE,                      NOOP,    NOOP,    NOOP,    NOOP,    NOOP,    NOOP,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                    NOOP,   KC_RPRN,  KC_UNDS,             NOOP,     NOOP,    NOOP
+                                    NOOP,  KC_RPRN,  KC_UNDS,                     NOOP,     NOOP,    NOOP
                                 //`--------------------------'  `--------------------------'
     ),
 
@@ -84,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         NOOP,    KC_GRV,  KC_1,    KC_2,    KC_3,    KC_BSLS,                      NOOP,    NOOP,    NOOP,    NOOP,    NOOP,    NOOP,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                    NOOP,    KC_0,    KC_MINS,           NOOP,     NOOP,    NOOP
+                                    NOOP,    KC_0,  KC_MINS,                        NOOP,     NOOP,    NOOP
                                 //`--------------------------'  `--------------------------'
     ),
 
@@ -98,5 +85,5 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                     NOOP,    NOOP,    NOOP,             NOOP,     NOOP,    NOOP
                                 //`--------------------------'  `--------------------------'
-    ),
+    )
 };

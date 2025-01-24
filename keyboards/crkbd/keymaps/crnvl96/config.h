@@ -9,7 +9,7 @@
 #define TAPPING_TERM_PER_KEY
 
 // combos must be pressed under this time interval
-#define COMBO_TERM 30
+#define COMBO_TERM 40
 
 // disables hold auto-repeat.
 #undef QUICK_TAP_TERM
