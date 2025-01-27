@@ -32,10 +32,14 @@ enum layer {
 // Combo definitions
 const uint16_t PROGMEM GH[] = {KC_G, KC_H, COMBO_END};
 const uint16_t PROGMEM BN[] = {KC_B, KC_N, COMBO_END};
+const uint16_t PROGMEM TY[] = {KC_T, KC_Y, COMBO_END};
+const uint16_t PROGMEM UI[] = {KC_U, KC_I, COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(GH, KC_ESC),
     COMBO(BN, KC_CAPS),
+    COMBO(TY, KC_TAB),
+    COMBO(UI, KC_ENT)
 };
 
 // Keymap definitions
@@ -83,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Number Layer
     [_U_NUM] = LAYOUT_split_3x6_3(
         //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-        NOOP,    NOOP,    KC_7,    KC_8,    KC_9,    KC_0,                         NOOP,    NOOP,    NOOP,    KC_TAB,  NOOP,    NOOP,
+        NOOP,    KC_0,    KC_7,    KC_8,    KC_9,    KC_MINS,                      NOOP,    NOOP,    NOOP,    KC_TAB,  NOOP,    NOOP,
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         NOOP,    KC_SCLN, KC_4,    KC_5,    KC_6,    KC_EQL,                       NOOP,    KC_RSFT, KC_RCTL, KC_LALT, KC_LGUI, NOOP,
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
