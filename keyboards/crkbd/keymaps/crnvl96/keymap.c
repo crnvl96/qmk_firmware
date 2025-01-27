@@ -30,16 +30,14 @@ enum layer {
 };
 
 // Combo definitions
-const uint16_t PROGMEM GH[] = {KC_G, KC_H, COMBO_END};
-const uint16_t PROGMEM BN[] = {KC_B, KC_N, COMBO_END};
-const uint16_t PROGMEM TY[] = {KC_T, KC_Y, COMBO_END};
-const uint16_t PROGMEM UI[] = {KC_U, KC_I, COMBO_END};
+const uint16_t PROGMEM GH[]    = {KC_G, KC_H, COMBO_END};
+const uint16_t PROGMEM BN[]    = {KC_B, KC_N, COMBO_END};
+const uint16_t PROGMEM ZSLSH[] = {KC_Z, KC_SLSH, COMBO_END};
 
 combo_t key_combos[] = {
-    COMBO(GH, KC_ESC),
-    COMBO(BN, KC_CAPS),
-    COMBO(TY, KC_TAB),
-    COMBO(UI, KC_ENT)
+    COMBO(GH,    KC_ESC),
+    COMBO(BN,    KC_CAPS),
+    COMBO(ZSLSH, KC_DEL),
 };
 
 // Keymap definitions
@@ -57,41 +55,40 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     //`--------------------------'  `--------------------------'
     ),
 
-
-    // Navigation Layer
-    [_U_NAV] = LAYOUT_split_3x6_3(
-        //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-        NOOP,    NOOP,    NOOP,    NOOP,    NOOP,    NOOP,                         KC_LCBR, KC_LPRN, NOOP,    KC_RPRN, KC_RCBR, NOOP,
-        //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-        NOOP,    KC_LGUI, KC_LALT, KC_RCTL, KC_LSFT, NOOP,                         KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, NOOP,    NOOP,
-        //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-        NOOP,    NOOP,    NOOP,    NOOP,    NOOP,    NOOP,                         KC_HOME, KC_LBRC, NOOP,    KC_RBRC, KC_END,  NOOP,
-        //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                      NOOP,    NOOP,    NOOP,                      NOOP,    NOOP,    NOOP
-                                    //`--------------------------'  `--------------------------'
-    ),
-
     // Symbol Layer
     [_U_SYM] = LAYOUT_split_3x6_3(
         //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-        NOOP,    NOOP,    KC_AMPR, KC_ASTR, KC_UNDS,  KC_MINS,                     NOOP,    NOOP,    NOOP,    NOOP,    NOOP,    NOOP,
+        NOOP,    KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR,                      NOOP,    NOOP,    NOOP,    NOOP,    NOOP,    NOOP,
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         NOOP,    KC_COLN, KC_DLR,  KC_PERC, KC_CIRC, KC_PLUS,                      NOOP,    KC_RSFT, KC_RCTL, KC_LALT, KC_LGUI, NOOP,
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         NOOP,    KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_PIPE,                      NOOP,    NOOP,    NOOP,    NOOP,    NOOP,    NOOP,
         //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                      NOOP,    NOOP,    NOOP,                      NOOP,    NOOP,    NOOP
+                                      NOOP,    KC_RPRN, KC_UNDS,                   NOOP,    NOOP,    NOOP
                                     //`--------------------------'  `--------------------------'
     ),
 
     // Number Layer
     [_U_NUM] = LAYOUT_split_3x6_3(
         //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-        NOOP,    KC_0,    KC_7,    KC_8,    KC_9,    KC_MINS,                      NOOP,    NOOP,    NOOP,    KC_TAB,  NOOP,    NOOP,
+        NOOP,    KC_LBRC, KC_7,    KC_8,    KC_9,    KC_RBRC,                      NOOP,    NOOP,    NOOP,    NOOP,    NOOP,    NOOP,
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         NOOP,    KC_SCLN, KC_4,    KC_5,    KC_6,    KC_EQL,                       NOOP,    KC_RSFT, KC_RCTL, KC_LALT, KC_LGUI, NOOP,
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         NOOP,    KC_GRV,  KC_1,    KC_2,    KC_3,    KC_BSLS,                      NOOP,    NOOP,    NOOP,    NOOP,    NOOP,    NOOP,
+        //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                      NOOP, KC_0,    KC_MINS,                      NOOP,    NOOP,    NOOP
+                                    //`--------------------------'  `--------------------------'
+    ),
+
+    // Navigation Layer
+    [_U_NAV] = LAYOUT_split_3x6_3(
+        //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+        NOOP,    NOOP,    NOOP,    NOOP,    NOOP,    NOOP,                         NOOP,    NOOP,    NOOP,    NOOP,    NOOP,    NOOP,
+        //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+        NOOP,    KC_LGUI, KC_LALT, KC_RCTL, KC_LSFT, NOOP,                         KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, NOOP,    NOOP,
+        //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+        NOOP,    NOOP,    NOOP,    NOOP,    NOOP,    NOOP,                         KC_HOME, NOOP,    NOOP,    NOOP,    KC_END,  NOOP,
         //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                       NOOP,    NOOP,    NOOP,                      NOOP,    NOOP,    NOOP
                                     //`--------------------------'  `--------------------------'
